@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Submissions</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Submitted Data</h2>
+
+    <div id="data"></div>
+
+    <a href="index.html">Back to Form</a>
+
+    <script>
+      let dataDiv = document.getElementById("data");
+      let submissions = JSON.parse(localStorage.getItem("submissions")) || [];
+
+      if (submissions.length === 0) {
+        dataDiv.innerHTML = "<p>No submissions yet.</p>";
+      } else {
+        submissions.forEach((item, index) => {
+          dataDiv.innerHTML += `
+                <div>
+                    <h3>Submission ${index + 1}</h3>
+                    <p><b>Name:</b> ${item.name}</p>
+                    <p><b>Email:</b> ${item.email}</p>
+                    <p><b>Message:</b> ${item.message}</p>
+                    <hr>
+                </div>
+            `;
+        });
+      }
+    </script>
+  </body>
+</html>
